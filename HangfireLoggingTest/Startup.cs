@@ -33,14 +33,11 @@ namespace HangfireLoggingTest
             GlobalConfiguration.Configuration
                 .UseNLogLogProvider();
 
-            var conn = Configuration["ConnectionStrings:DefaultConnection"];
-
             services.AddHangfire((isp, config) =>
             {
                 config.UseMemoryStorage();
 
                 config.UseConsole();
-
             });
         }
 
@@ -59,7 +56,7 @@ namespace HangfireLoggingTest
             }
 
             app.UseHangfireServer();
-            //needs to be called before servicestack or route will be unreachable
+
             app.UseHangfireDashboard();
 
             app.UseHttpsRedirection();
